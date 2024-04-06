@@ -39,7 +39,26 @@ public class BackendHSStudio {
             pstmt.setInt(5, 36); // Talla del producto
             pstmt.setString(6, "Azul"); // Color del producto
             pstmt.setString(7, "Mujer"); // Género del producto
-            pstmt.executeUpdate();
+            /*pstmt.executeUpdate();*/
+            
+            
+             
+            // Actualización de un producto
+            float nuevoPrecio =110000; // Precio actualizado
+            int idProductoAActualizar =11; // Id del producto a actualizar
+            String sqlUpdate = "UPDATE PRODUCTO SET PRECIO = ? WHERE Id_Producto = ?";
+            PreparedStatement pstmtUpdate = conexion.prepareStatement(sqlUpdate);
+            pstmtUpdate.setFloat(1, nuevoPrecio); // Aquí se establece el valor del precio en el primer parámetro
+            pstmtUpdate.setInt(2, idProductoAActualizar);
+            int filasActualizadas = pstmtUpdate.executeUpdate();
+            if (filasActualizadas > 0) {
+                System.out.println("El producto ha sido actualizado correctamente.");
+            } else {
+                System.out.println("No se ha podido actualizar el producto.");
+            }
+
+            
+            
             
             // Recuperar la imagen de la base de datos
             rs = statement.executeQuery("SELECT * FROM PRODUCTO");
