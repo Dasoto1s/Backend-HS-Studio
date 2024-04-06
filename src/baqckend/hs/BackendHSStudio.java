@@ -58,6 +58,18 @@ public class BackendHSStudio {
             }
 
             
+             // Eliminación de un producto
+            int idProductoAEliminar = 16; // Id del producto a eliminar
+            String sqlDelete = "DELETE FROM PRODUCTO WHERE Id_Producto = ?";
+            PreparedStatement pstmtDelete = conexion.prepareStatement(sqlDelete);
+            pstmtDelete.setInt(1, idProductoAEliminar);
+            int filasEliminadas = pstmtDelete.executeUpdate();
+            if (filasEliminadas > 0) {
+                System.out.println("El producto ha sido eliminado correctamente.");
+            } else {
+                System.out.println("No se ha podido eliminar el producto.");
+            }
+
             
             
             // Recuperar la imagen de la base de datos
