@@ -1,4 +1,4 @@
-package baqckend.hs;
+package baqckend;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,20 +32,18 @@ public class BackendHSStudio {
             File imagenFile = new File("C:\\Users\\alexa\\OneDrive\\Desktop\\Tennisia\\71VmlL9BDdS._AC_SY500_.jpg"); //  ruta de tu imagen del producto
             FileInputStream fis = new FileInputStream(imagenFile);
             PreparedStatement pstmt = conexion.prepareStatement("INSERT INTO PRODUCTO(NOMBRE, DESCRIPCION, IMAGEN, PRECIO, TALLA, COLOR, GENERO) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            pstmt.setString(1, "abc"); // Nombre del producto
-            pstmt.setString(2, " altos"); // Descripción del producto
+            pstmt.setString(1, "Sandalias"); // Nombre del producto
+            pstmt.setString(2, " con correa ajustable"); // Descripción del producto
             pstmt.setBinaryStream(3, fis, (int) imagenFile.length()); // Imagen del producto
             pstmt.setFloat(4, 140000); // Precio del producto
             pstmt.setInt(5, 36); // Talla del producto
-            pstmt.setString(6, "Azul"); // Color del producto
+            pstmt.setString(6, "ROSA"); // Color del producto
             pstmt.setString(7, "Mujer"); // Género del producto
-            /*pstmt.executeUpdate();*/
+            pstmt.executeUpdate();
             
-            
-             
-            // Actualización de un producto
-            float nuevoPrecio =110000; // Precio actualizado
-            int idProductoAActualizar =11; // Id del producto a actualizar
+              // Actualización de un producto
+            float nuevoPrecio =150000; // Precio actualizado
+            int idProductoAActualizar = 13; // Id del producto a actualizar
             String sqlUpdate = "UPDATE PRODUCTO SET PRECIO = ? WHERE Id_Producto = ?";
             PreparedStatement pstmtUpdate = conexion.prepareStatement(sqlUpdate);
             pstmtUpdate.setFloat(1, nuevoPrecio); // Aquí se establece el valor del precio en el primer parámetro
@@ -58,8 +56,8 @@ public class BackendHSStudio {
             }
 
             
-             // Eliminación de un producto
-            int idProductoAEliminar = 16; // Id del producto a eliminar
+            // Eliminación de un producto
+            int idProductoAEliminar = 11; // Id del producto a eliminar
             String sqlDelete = "DELETE FROM PRODUCTO WHERE Id_Producto = ?";
             PreparedStatement pstmtDelete = conexion.prepareStatement(sqlDelete);
             pstmtDelete.setInt(1, idProductoAEliminar);
@@ -70,7 +68,7 @@ public class BackendHSStudio {
                 System.out.println("No se ha podido eliminar el producto.");
             }
 
-            
+
             
             // Recuperar la imagen de la base de datos
             rs = statement.executeQuery("SELECT * FROM PRODUCTO");
